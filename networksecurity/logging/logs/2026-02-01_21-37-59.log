@@ -1,0 +1,2 @@
+[2026-02-01 21:37:59,617] 26 networksecurity.logging.logger INFO - Logger initialized successfully
+[2026-02-01 21:38:10,523] 57 root INFO - Number of records inserted to MongoDB: 11055
