@@ -9,4 +9,6 @@ requests
 pandas
 certifi
 pymongo[srv]
+pyaml
+dill
 ## -e .
