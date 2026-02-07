@@ -12,4 +12,8 @@ pymongo[srv]
 pyaml
 dill
 mlflow
+dagshub
+fastapi
+uvicorn
+python-multipart
 ## -e .

@@ -17,6 +17,8 @@ from networksecurity.utils.main_utils.utlis import load_numpy_array_data, evalua
 from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
 import mlflow
 
+import dagshub
+dagshub.init(repo_owner='KASHISHKANU', repo_name='Network-Security-System', mlflow=True)
 
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig,
@@ -133,6 +135,8 @@ class ModelTrainer:
             file_path=self.model_trainer_config.trained_model_file_path,
             obj=network_model
         )
+
+        save_object("final_models/model.pkl",best_model)
 
         model_trainer_artifact = ModelTrainerConfigArtifact(
             trained_model_file_path=self.model_trainer_config.trained_model_file_path,

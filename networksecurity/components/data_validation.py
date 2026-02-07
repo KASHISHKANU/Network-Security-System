@@ -18,11 +18,11 @@ class DataValidation:
     def __init__(
         self,
         data_validation_config: DataValidationConfig,
-        data_ingestion_artifact: DataIngestionConfigArtifact
+        data_ingestion_config_artifact: DataIngestionConfigArtifact
     ):
         try:
             self.data_validation_config = data_validation_config
-            self.data_ingestion_artifact = data_ingestion_artifact
+            self.data_ingestion_artifact = data_ingestion_config_artifact
             self.schema = read_yaml_file(SCHEMA_FILE_PATH)
         except Exception as e:
             raise NetworkSecurityException(e, sys)
