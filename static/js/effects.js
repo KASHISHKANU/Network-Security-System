@@ -1,46 +1,31 @@
-const glow = document.querySelector(".cursor-glow");
-const gradient = document.querySelector(".gradient-bg");
+const spot = document.querySelector(".cursor-spot");
 
-/* CURSOR + GRADIENT */
-document.addEventListener("mousemove", (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-
-    document.documentElement.style.setProperty("--x", `${x}%`);
-    document.documentElement.style.setProperty("--y", `${y}%`);
-
-    glow.style.left = `${e.clientX}px`;
-    glow.style.top = `${e.clientY}px`;
-
-    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-    gradient.style.transform = `translate(${moveX}px, ${moveY}px)`;
+document.addEventListener("mousemove", e => {
+    if (!spot) return;
+    spot.style.left = e.clientX + "px";
+    spot.style.top = e.clientY + "px";
 });
 
-/* MAGNETIC BUTTON */
-document.querySelectorAll(".magic-btn").forEach(btn => {
-    btn.addEventListener("mousemove", e => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.08)`;
-    });
+const form = document.querySelector("form");
+const loader = document.getElementById("loader");
 
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "translate(0,0) scale(1)";
+if (form && loader) {
+    form.addEventListener("submit", () => {
+        loader.classList.remove("hidden");
     });
+}
+
+document.querySelectorAll(".threat-table tbody tr").forEach(row => {
+    const rowText = row.innerText;
+
+    if (rowText.includes("MALICIOUS")) {
+        row.classList.add("tr-malicious");
+    }
+
+    if (rowText.includes("SAFE")) {
+        row.classList.add("tr-safe");
+    }
 });
 
-/* SCROLL REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-window.addEventListener("scroll", () => {
-    reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-            el.classList.add("active");
-        }
-    });
+document.addEventListener("DOMContentLoaded", () => {
 });
-
-/* INITIAL REVEAL */
-window.dispatchEvent(new Event("scroll"));

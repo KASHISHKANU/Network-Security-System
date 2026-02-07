@@ -1,22 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="glass-card reveal">
+<section class="results slide-up">
 
-    <h3 class="mb-3">Prediction Results</h3>
+    <!-- Threat Intelligence Summary -->
+    <div class="intel-grid">
+        <div class="intel-card">
+            <span>Total Records</span>
+            <h2>{{ total }}</h2>
+        </div>
 
-    <div class="table-responsive">
+        <div class="intel-card danger">
+            <span>Malicious</span>
+            <h2>{{ malicious }}</h2>
+        </div>
+
+        <div class="intel-card safe">
+            <span>Safe</span>
+            <h2>{{ safe }}</h2>
+        </div>
+
+        <div class="intel-card highlight">
+            <span>Threat %</span>
+            <h2>{{ threat_percent }}%</h2>
+        </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="table-shell">
         {{ table | safe }}
     </div>
 
-    <div class="mt-4">
-        <a href="/download" class="magic-btn me-2">
-            ⬇ Download CSV
+    <!-- Actions -->
+    <div class="actions">
+        <a href="/download" class="primary-btn small">
+            ⬇ Download Report
         </a>
-        <a href="/" class="btn btn-outline-light">
-            ⬅ New Prediction
+
+        <a href="/" class="secondary-btn small">
+            ← New Analysis
         </a>
     </div>
 
-</div>
+</section>
 {% endblock %}
