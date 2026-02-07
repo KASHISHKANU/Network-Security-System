@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Table</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h2>Predicted Data</h2>
-    {{ table | safe }}
+{% block content %}
+<div class="glass-card reveal">
 
-</body>
-</html>
+    <h3 class="mb-3">Prediction Results</h3>
+
+    <div class="table-responsive">
+        {{ table | safe }}
+    </div>
+
+    <div class="mt-4">
+        <a href="/download" class="magic-btn me-2">
+            ⬇ Download CSV
+        </a>
+        <a href="/" class="btn btn-outline-light">
+            ⬅ New Prediction
+        </a>
+    </div>
+
+</div>
+{% endblock %}
